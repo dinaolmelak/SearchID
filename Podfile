@@ -9,6 +9,10 @@ target 'SearchID' do
 
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
+  pod 'FirebaseUI'
+  
 
 
 end
