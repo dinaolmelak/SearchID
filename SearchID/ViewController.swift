@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func didTapOnFound(_ sender: Any){
-        let createdVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "secondVC") as! SecondViewController
+        let createdVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpVC") as! SignUpViewController
         //let createdVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "secondVC") as! CreatedViewController
         self.addChild(createdVC)
         createdVC.outputLabelText = textFieldLabel.text!

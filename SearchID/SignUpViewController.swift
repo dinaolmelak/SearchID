@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SecondViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
     @IBOutlet weak var outputLabel: UILabel!
     var outputLabelText: String!
