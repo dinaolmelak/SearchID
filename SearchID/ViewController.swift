@@ -11,23 +11,21 @@ import Firebase
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var textFieldLabel: UITextField!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-    @IBAction func didTapOnFound(_ sender: Any){
-        let createdVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpVC") as! SignUpViewController
-        //let createdVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "secondVC") as! CreatedViewController
-        self.addChild(createdVC)
-        createdVC.outputLabelText = textFieldLabel.text!
-        self.view.addSubview(createdVC.view)
-        createdVC.didMove(toParent: self)
+    
+    @IBAction func didTapCreateAccount(_ sender: Any) {
+        let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpVCID") as! SignUpViewController
+        self.addChild(signUpVC)
+        self.view.addSubview(signUpVC.view)
+        signUpVC.didMove(toParent: self)
+        
+        
         
     }
-    
     
     
     
@@ -35,3 +33,12 @@ class ViewController: UIViewController {
 
 }
 
+/*
+ //This is how to pass data
+ let createdVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpVC") as! SignUpViewController
+ //let createdVC = UIStoryboard(name:"Main", bundle: nil).instantiateViewController(withIdentifier: "secondVC") as! CreatedViewController
+ self.addChild(createdVC)
+ createdVC.outputLabelText = textFieldLabel.text!
+ self.view.addSubview(createdVC.view)
+ createdVC.didMove(toParent: self)
+ */
