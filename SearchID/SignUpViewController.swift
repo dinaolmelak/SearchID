@@ -10,12 +10,25 @@ import UIKit
 import Firebase
 
 class SignUpViewController: UIViewController {
-    //@IBOutlet weak var displayField: UILabel!
-    // var inputText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //performSegue(withIdentifier: "display", sender: self)
         // Do any additional setup after loading the view.
+    }
+    @IBAction func didTapBack(_ sender: Any) {
+        let myhomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
+        self.addChild(myhomeVC)
+        self.view.addSubview(myhomeVC.view)
+        myhomeVC.didMove(toParent: self)
+        
+        /*
+        let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! SignInViewController
+        self.addChild(signInVC)
+        self.view.addSubview(signInVC.view)
+        signInVC.didMove(toParent: self)
+        */
+        
     }
     
     

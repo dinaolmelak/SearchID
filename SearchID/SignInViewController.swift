@@ -15,6 +15,15 @@ class SignInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    @IBAction func didTapOnBack(_ sender: Any) {
+        let myhomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
+        self.addChild(myhomeVC)
+        self.view.addSubview(myhomeVC.view)
+        myhomeVC.didMove(toParent: self)
+    }
+    
+   
+    
     
 
     /*
