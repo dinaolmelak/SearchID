@@ -26,6 +26,13 @@ class ViewController: UIViewController {
         
         
     }
+    @IBAction func didTapSignIn(_ sender: Any) {
+        let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signInVCID") as! SignInViewController
+        self.addChild(signInVC)
+        self.view.addSubview(signInVC.view)
+        signInVC.didMove(toParent: self)
+        
+    }
     
     
     
