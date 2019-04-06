@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="17R-Br-YUL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="17R-Br-YUL">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +24,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <state key="normal" title="Create an account"/>
                                 <connections>
-                                    <action selector="didTapCreateAccount:" destination="17R-Br-YUL" eventType="touchUpInside" id="Ye8-Ex-tGs"/>
+                                    <action selector="didTapCreateAccount:" destination="17R-Br-YUL" eventType="touchUpInside" id="SWd-8y-GUt"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ky6-LZ-byb">
@@ -43,6 +43,10 @@
                                     <action selector="didTapSignIn:" destination="rQk-6q-CU8" eventType="touchUpInside" id="Vvy-nf-Jde"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SearchID2-1" translatesAutoresizingMaskIntoConstraints="NO" id="Kjr-5L-STW">
+                                <rect key="frame" x="67" y="166" width="240" height="234"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="V1P-Bz-bib"/>
@@ -51,7 +55,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0M-WD-tfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rQk-6q-CU8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-841" y="-869"/>
+            <point key="canvasLocation" x="-842.39999999999998" y="-869.70443349753702"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="TdF-y2-1K8">
@@ -79,6 +83,9 @@
                                 <rect key="frame" x="164" y="578" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="didTapSignIn:" destination="7nz-zH-IOu" eventType="touchUpInside" id="pfH-hc-dS7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vK0-gO-Z33">
                                 <rect key="frame" x="22" y="44" width="34" height="30"/>
@@ -97,12 +104,25 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="3Hd-Xc-LeQ"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Tx0-EP-Vms" appends="YES" id="b7j-7z-jvu"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="emailTextIn" destination="0Qb-2M-gUL" id="Wzn-ZB-1YX"/>
+                        <outlet property="passwordTextIn" destination="srE-Pk-obJ" id="mDZ-XP-Niq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22h-j6-vDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Tx0-EP-Vms">
+                    <connections>
+                        <action selector="didTapGesture:" destination="7nz-zH-IOu" id="ujm-xc-dOX"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-154" y="-359"/>
+            <point key="canvasLocation" x="-132" y="-1133"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="fiT-wT-Pzx">
@@ -112,7 +132,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIG-cX-sIs">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIG-cX-sIs">
                                 <rect key="frame" x="60" y="277" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -124,7 +144,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="83E-3f-yte">
                                 <rect key="frame" x="60" y="400" width="254" height="30"/>
@@ -144,6 +164,9 @@
                                 <rect key="frame" x="160" y="580" width="54" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="didTapSignUp:" destination="ia7-6C-7cD" eventType="touchUpInside" id="QcL-k5-aNn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Il-CM-xzR">
                                 <rect key="frame" x="16" y="44" width="34" height="30"/>
@@ -162,12 +185,78 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="7Cx-Lo-hHr"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="dXF-R1-Fza" appends="YES" id="eTt-AN-LQJ"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="emailTextIn" destination="83E-3f-yte" id="QYV-9q-ZZG"/>
+                        <outlet property="fullNameTextIn" destination="uIG-cX-sIs" id="nHv-C8-0nJ"/>
+                        <outlet property="jsuIDNumberIn" destination="Y2p-XR-ySd" id="KaB-dA-xVe"/>
+                        <outlet property="passwordIn" destination="aGx-Ha-W9r" id="JfP-qA-tNa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7j-th-z0l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dXF-R1-Fza">
+                    <connections>
+                        <action selector="didTapGesture:" destination="ia7-6C-7cD" id="QmV-QK-cBo"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-154" y="-1111"/>
+            <point key="canvasLocation" x="-132" y="-340"/>
+        </scene>
+        <!--Lost View Controller-->
+        <scene sceneID="MdF-J5-Sj7">
+            <objects>
+                <viewController storyboardIdentifier="lostVCID" id="OBH-EB-MpV" customClass="LostViewController" customModule="SearchID" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tyw-d4-qpF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please Enter Lost ID Number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjo-vv-d1j">
+                                <rect key="frame" x="53" y="152" width="269" height="112"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter ID Number Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xdA-LT-Km6">
+                                <rect key="frame" x="78" y="318" width="219" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MY3-8b-JJJ">
+                                <rect key="frame" x="159" y="425" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="didTapSearch:" destination="OBH-EB-MpV" eventType="touchUpInside" id="1Os-uN-6T0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCh-4H-JCd">
+                                <rect key="frame" x="16" y="44" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="goHome"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="bGn-uy-KZ3"/>
+                    </view>
+                    <connections>
+                        <outlet property="lostIDNumberLabel" destination="fjo-vv-d1j" id="Hdy-eg-3Ue"/>
+                        <outlet property="numberIDTextField" destination="xdA-LT-Km6" id="oJZ-r1-Dy5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RyM-IO-Mgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="808.79999999999995" y="-761.08374384236458"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SearchID2-1" width="609" height="609"/>
+    </resources>
 </document>

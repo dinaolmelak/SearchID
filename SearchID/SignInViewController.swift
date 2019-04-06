@@ -7,23 +7,57 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
-
+    var db: Firestore!
+    @IBOutlet weak var emailTextIn: UITextField!
+    @IBOutlet weak var passwordTextIn: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let settings = FirestoreSettings()
+        
+        Firestore.firestore().settings = settings
+        // [END setup]
+        db = Firestore.firestore()
         // Do any additional setup after loading the view.
     }
     @IBAction func didTapOnBack(_ sender: Any) {
+        goBack()
+    }
+    @IBAction func didTapSignIn(_ sender: Any) {
+        let myLostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "lostVCID") as! LostViewController
+        self.addChild(myLostVC)
+        self.view.addSubview(myLostVC.view)
+        
+        
+        
+        Auth.auth().signIn(withEmail: emailTextIn.text!, password: passwordTextIn.text!)
+            
+        
+        myLostVC.didMove(toParent: self)
+        
+    }
+    @IBAction func didTapGesture(_ sender: Any) {
+        self.view.endEditing(true)
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func goBack(){
         let myhomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
         self.addChild(myhomeVC)
         self.view.addSubview(myhomeVC.view)
         myhomeVC.didMove(toParent: self)
     }
-    
-   
-    
     
 
     /*
