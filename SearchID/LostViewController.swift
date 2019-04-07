@@ -8,12 +8,11 @@
 
 import UIKit
 import Firebase
-import FirebaseUI
-import UserNotifications
+import FirebaseAuth
 
 class LostViewController: UIViewController {
     var db: Firestore!
-    @IBOutlet weak var lostIDNumberLabel: UILabel!
+    @IBOutlet weak var lostIDLabel: UILabel!
     @IBOutlet weak var numberIDTextField: UITextField!
     
     
@@ -24,60 +23,42 @@ class LostViewController: UIViewController {
         Firestore.firestore().settings = settings
         // [END setup]
         db = Firestore.firestore()
-        /*
-        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let username = value?["username"] as? String ?? ""
-            let user = User(username: username)
-            
-            // ...
-        }) { (error) in
-            print(error.localizedDescription)
-        }*/
+        
     }
     @IBAction func didTapSearch(_ sender: Any) {
         
-        lostIDNumberLabel.text = "SearchID!!!"
         
-        let docRef = db.collection("Users").document("firstUser")
+        guard let person = numberIDTextField!.text else {
+            return
+            
+        }
         
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                print("Document data: \(dataDescription)")
-            } else {
-                print("Document does not exist")
+        let docRef = db.collection("users").document(person)
+        
+        docRef.getDocument { (documentSnapshot, Error) in
+            if let document = documentSnapshot, document.exists{
+                let data = document.data()
+                let emailFromDB = data!["Email"]!
+                self.lostIDLabel.text = (emailFromDB as! String)
             }
         }
-        print("Dinaol is the best")
         /*
-        var ref: DatabaseReference!
-        
-        ref = Database.database().reference()
-        // Do any additional setup after loading the view.
-        //let userID = Auth.auth().currentUser?.uid
-        
-        ref.child("Users").child("firstUser").observeSingleEvent(of: .value) { (DataSnapshot) in
-            let value = DataSnapshot.value as? NSDictionary
-            print(value!)
-        }
-       */
-        
-        
-        /*
-         let userID = Auth.auth().currentUser?.uid
-         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-         // Get user value
-         let value = snapshot.value as? NSDictionary
-         let username = value?["username"] as? String ?? ""
-         let user = User(username: username)
+        docRef.getDocument { (document, error) in
+         if let document = document, document.exists {
+         let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
          
-         // ...
-         }) { (error) in
-         print(error.localizedDescription)
+            print(dataDescription)
+         } else {
+         print("Document does not exist")
          }
-         */
+         }
+        */
+        
+        //lostIDNumberLabel.text = (dinaol["Email"] as! String)
+        //lostIDNumberLabel.text = (userEmail as! String)
+       
+        print("Dinaol is the best")
+        
         //Look through the database to see if the ID belongs to someone
         
         //if it does get the ID, trigger the alert to that person
@@ -86,7 +67,22 @@ class LostViewController: UIViewController {
         
         
     }
-    
+    @IBAction func didTapGoHome(_ sender: Any) {
+        self.view.endEditing(true)
+        let goHomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
+        
+        self.addChild(goHomeVC)
+        self.view.addSubview(goHomeVC.view)
+        goHomeVC.didMove(toParent: self)
+    }
+    func createAlert(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true)
+        }))
+        self.present(alert,animated: true, completion: nil)
+        
+    }
 
     /*
     // MARK: - Navigation
