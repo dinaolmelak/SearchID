@@ -14,11 +14,8 @@ import FirebaseAuth
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var fullNameTextIn: UITextField!
-    
     @IBOutlet weak var jsuIDNumberIn: UITextField!
-    
     @IBOutlet weak var emailTextIn: UITextField!
-    
     @IBOutlet weak var passwordIn: UITextField!
     
     var db: Firestore!
@@ -35,9 +32,7 @@ class SignUpViewController: UIViewController {
         
     }
     @IBAction func didTapSignUp(_ sender: Any) {
-        let myLostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "lostVCID") as! LostViewController
-        self.addChild(myLostVC)
-        self.view.addSubview(myLostVC.view)
+        
         
         let email = emailTextIn.text!
         let password = passwordIn.text!
@@ -46,19 +41,32 @@ class SignUpViewController: UIViewController {
         
         //myDoc.collection("Users").addDocument(data: ["JSU_ID":jsuIDNumberIn.text!])
         //myDoc.setData(["JSU_ID":jsuIDNumberIn.text!])
-        
-        
-        //Auth.auth().cre
+        /*
+        if(jsuIDNum.count != 6 || jsuIDNum == ""){
+            createAlert(title: "JSU ID Missing", message: "Please enter the last 6 digits of your JSU ID")
+        }else if(email == "" || !(email.contains("@"))){
+            createAlert(title: "Incorrect Email", message: "Please check your email")
+        }else if(password == ""){
+            createAlert(title: "Password Needed", message: "Please enter a password for your account")
+        }else if(fullName == ""){
+            createAlert(title: "Full Name Needed", message: "Please enter your first and last name")
+        }else{
+            createAlert(title: "Info Needed", message: "Please fill out the needed information")
+        }
+        */
         Auth.auth().createUser(withEmail: email, password: password)
         let userUID = Auth.auth().currentUser!.uid
-        db.collection("users").document(userUID).setData([
-                "Full Name": fullName,
+        
+        db.collection("users").document(jsuIDNum).setData([
+                "fullName": fullName,
+                "userUID": userUID,
                 "JSU_ID": jsuIDNum,
                 "Email": email ])
         
         
+        goToLostIDVC()
         
-        myLostVC.didMove(toParent: self)
+        
 
     }
     @IBAction func didTapGesture(_ sender: Any) {
@@ -71,13 +79,33 @@ class SignUpViewController: UIViewController {
     
     
     
-    
+    func goToLostIDVC(){
+        
+        let myLostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "lostVCID") as! LostViewController
+        self.addChild(myLostVC)
+        self.view.addSubview(myLostVC.view)
+        myLostVC.didMove(toParent: self)
+        
+    }
     func goBack(){
+        self.view.endEditing(true)
         let myhomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
         self.addChild(myhomeVC)
         self.view.addSubview(myhomeVC.view)
         myhomeVC.didMove(toParent: self)
     }
+    
+    func createAlert(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true)
+        }))
+        self.present(alert,animated: true, completion: nil)
+        
+    }
+    
+    
+    
     
     /*
     // MARK: - Navigation
