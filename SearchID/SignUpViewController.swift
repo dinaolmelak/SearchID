@@ -32,39 +32,58 @@ class SignUpViewController: UIViewController {
         
     }
     @IBAction func didTapSignUp(_ sender: Any) {
+        let switchCar: Character
         
-        
-        let email = emailTextIn.text!
-        let password = passwordIn.text!
-        let jsuIDNum = jsuIDNumberIn.text!
-        let fullName = fullNameTextIn.text!
-        
-        //myDoc.collection("Users").addDocument(data: ["JSU_ID":jsuIDNumberIn.text!])
-        //myDoc.setData(["JSU_ID":jsuIDNumberIn.text!])
-        /*
-        if(jsuIDNum.count != 6 || jsuIDNum == ""){
-            createAlert(title: "JSU ID Missing", message: "Please enter the last 6 digits of your JSU ID")
-        }else if(email == "" || !(email.contains("@"))){
-            createAlert(title: "Incorrect Email", message: "Please check your email")
-        }else if(password == ""){
-            createAlert(title: "Password Needed", message: "Please enter a password for your account")
-        }else if(fullName == ""){
-            createAlert(title: "Full Name Needed", message: "Please enter your first and last name")
-        }else{
-            createAlert(title: "Info Needed", message: "Please fill out the needed information")
+        if jsuIDNumberIn.text?.count != 6 || jsuIDNumberIn.text == "" {
+            switchCar = "a"
+        }else if emailTextIn.text == "" || !((emailTextIn.text?.contains("@"))!){
+            switchCar = "b"
+        }else if(passwordIn.text == ""){
+            switchCar = "c"
+        }else if(fullNameTextIn.text == ""){
+            switchCar = "d"
+        }else if(fullNameTextIn.text == "" && passwordIn.text == "" && (emailTextIn.text == "" || !((emailTextIn.text?.contains("@"))!)) && (jsuIDNumberIn.text?.count != 6 || jsuIDNumberIn.text == "")){
+            switchCar = "e"
+        }else {
+            switchCar = "z"
         }
-        */
-        Auth.auth().createUser(withEmail: email, password: password)
-        let userUID = Auth.auth().currentUser!.uid
         
-        db.collection("users").document(jsuIDNum).setData([
+        switch switchCar{
+        case "a":
+            createAlert(title: "JSU ID Missing", message: "Please enter the last 6 digits of your JSU ID")
+        case "b":
+            createAlert(title: "Incorrect Email", message: "Please check your email")
+        case "c":
+            createAlert(title: "Password Needed", message: "Please enter a password for your account")
+        case "d":
+            createAlert(title: "Full Name Needed", message: "Please enter your first and last name")
+        case "e":
+            createAlert(title: "Info Needed", message: "Please fill out the needed information")
+        default:
+            let email = emailTextIn.text!
+            let password = passwordIn.text!
+            let jsuIDNum = jsuIDNumberIn.text!
+            let fullName = fullNameTextIn.text!
+            
+            //myDoc.collection("Users").addDocument(data: ["JSU_ID":jsuIDNumberIn.text!])
+            //myDoc.setData(["JSU_ID":jsuIDNumberIn.text!])
+            
+            
+            
+            Auth.auth().createUser(withEmail: email, password: password)
+            let userUID = Auth.auth().currentUser!.uid
+            
+            db.collection("users").document(jsuIDNum).setData([
                 "fullName": fullName,
                 "userUID": userUID,
                 "JSU_ID": jsuIDNum,
                 "Email": email ])
+            
+            
+            goToLostIDVC()
+            
+        }
         
-        
-        goToLostIDVC()
         
         
 
@@ -100,7 +119,7 @@ class SignUpViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
             alert.dismiss(animated: true)
         }))
-        self.present(alert,animated: true, completion: nil)
+        self.present(alert,animated: true)
         
     }
     

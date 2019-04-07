@@ -57,15 +57,7 @@ class LostViewController: UIViewController {
         //lostIDNumberLabel.text = (dinaol["Email"] as! String)
         //lostIDNumberLabel.text = (userEmail as! String)
        
-        print("Dinaol is the best")
-        
-        //Look through the database to see if the ID belongs to someone
-        
-        //if it does get the ID, trigger the alert to that person
-        
-        //if it does not get the ID Change lostIDNumberLabel to ID Not Found
-        
-        
+        self.view.endEditing(true)
     }
     @IBAction func didTapGoHome(_ sender: Any) {
         self.view.endEditing(true)

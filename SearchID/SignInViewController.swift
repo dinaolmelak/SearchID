@@ -38,9 +38,10 @@ class SignInViewController: UIViewController {
             createAlert(title: "Email and Password Empty", message: "Please enter your email and password")
         }else{
             goToLostIDVC()
+            //Auth.auth().signIn(withEmail: emailTextIn.text!, password: passwordTextIn.text!)
         }
         
-        //Auth.auth().signIn(withEmail: emailTextIn.text!, password: passwordTextIn.text!)
+        
         
         
         
