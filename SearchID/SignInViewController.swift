@@ -12,6 +12,8 @@ import FirebaseAuth
 
 class SignInViewController: UIViewController {
     var db: Firestore!
+    
+    
     @IBOutlet weak var emailTextIn: UITextField!
     @IBOutlet weak var passwordTextIn: UITextField!
     override func viewDidLoad() {
@@ -23,13 +25,37 @@ class SignInViewController: UIViewController {
         db = Firestore.firestore()
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    
+    
     @IBAction func didTapOnBack(_ sender: Any) {
         self.view.endEditing(true)
         goToHomeVC()
     }
     @IBAction func didTapSignIn(_ sender: Any) {
+        guard let email = self.emailTextIn.text, let password = self.passwordTextIn.text else{
+            self.createAlert(title: "email or password", message: "email or password can't be empty")
+            return
+        }
+        Auth.auth().signIn(withEmail: email, password: password) { (dataResult, error) in
+            if dataResult != nil && error == nil{
+                print("Signed IN!!!!")
+                self.goToLostIDVC()
+            }else{
+                print("ERROR\(error!.localizedDescription)")
+            }
+            
+            
+            
+        }
         
         
+        
+       /*
         if emailTextIn.text == ""{
             createAlert(title: "Email Empty", message: "Please enter your email")
         }else if passwordTextIn.text == "" {
@@ -37,9 +63,11 @@ class SignInViewController: UIViewController {
         }else if (emailTextIn.text == "" && passwordTextIn.text == ""){
             createAlert(title: "Email and Password Empty", message: "Please enter your email and password")
         }else{
-            goToLostIDVC()
+        */
+        
+        
             //Auth.auth().signIn(withEmail: emailTextIn.text!, password: passwordTextIn.text!)
-        }
+        //}
         
         
         

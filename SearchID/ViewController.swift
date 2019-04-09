@@ -11,12 +11,22 @@ import Firebase
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var createAccountButton: UIButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Auth.auth().currentUser != nil{
+            goToLostIDVC()
+        }
+        
+    }
+    
     
     @IBAction func didTapCreateAccount(_ sender: Any) {
         let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpVCID") as! SignUpViewController
@@ -44,6 +54,14 @@ class ViewController: UIViewController {
         
     }
     
+    func goToLostIDVC(){
+        
+        let myLostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "lostVCID") as! LostViewController
+        self.addChild(myLostVC)
+        self.view.addSubview(myLostVC.view)
+        myLostVC.didMove(toParent: self)
+        
+    }
     
 
 }

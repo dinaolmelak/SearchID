@@ -27,6 +27,7 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
         db = Firestore.firestore()
     }
+    
     @IBAction func didTapBack(_ sender: Any) {
         goBack()
         
@@ -36,9 +37,9 @@ class SignUpViewController: UIViewController {
         
         if jsuIDNumberIn.text?.count != 6 || jsuIDNumberIn.text == "" {
             switchCar = "a"
-        }else if emailTextIn.text == "" || !((emailTextIn.text?.contains("@"))!){
+        }else if emailTextIn.text == "" || !((emailTextIn.text!.contains("@"))){
             switchCar = "b"
-        }else if(passwordIn.text == ""){
+        }else if(passwordIn.text == "" || passwordIn.text!.count < 6){
             switchCar = "c"
         }else if(fullNameTextIn.text == ""){
             switchCar = "d"
@@ -60,6 +61,7 @@ class SignUpViewController: UIViewController {
         case "e":
             createAlert(title: "Info Needed", message: "Please fill out the needed information")
         default:
+            
             let email = emailTextIn.text!
             let password = passwordIn.text!
             let jsuIDNum = jsuIDNumberIn.text!
@@ -70,19 +72,24 @@ class SignUpViewController: UIViewController {
             
             
             
-            Auth.auth().createUser(withEmail: email, password: password)
+            Auth.auth().createUser(withEmail: email, password: password) { (dataResult, error) in
+                if error == nil && dataResult != nil {
+                    print("sign up success")
+                    self.goToLostIDVC()
+                } else {
+                    print("sign up failed \(error!.localizedDescription)")
+                }
+            }
             let userUID = Auth.auth().currentUser!.uid
             
             db.collection("users").document(jsuIDNum).setData([
                 "fullName": fullName,
                 "userUID": userUID,
                 "JSU_ID": jsuIDNum,
-                "Email": email ])
-            
-            
-            goToLostIDVC()
-            
-        }
+                "Email": email,
+                "isIDLost": false,
+                ])
+        }//switch closes here
         
         
         
