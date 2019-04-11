@@ -12,11 +12,10 @@ import FirebaseAuth
 
 class LostViewController: UIViewController {
     var db: Firestore!
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+   
     
     @IBOutlet weak var lostIDLabel: UILabel!
     @IBOutlet weak var numberIDTextField: UITextField!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +25,12 @@ class LostViewController: UIViewController {
         // [END setup]
         db = Firestore.firestore()
         self.view.endEditing(true)
+        
     }
     @IBAction func didTapSearch(_ sender: Any) {
         self.view.endEditing(true)
-        startWaitingIndicator()
+        
+        
         if numberIDTextField.text!.count > 6 || numberIDTextField.text!.count < 6 || numberIDTextField.text! == ""{
             createAlert(title: "Incorrect Value", message: "Please check your input and try again")
         }
@@ -47,7 +48,6 @@ class LostViewController: UIViewController {
                 self.lostIDLabel.text = (emailFromDB as! String)
             }
         }
-        stopWaitingIndicator()
         /*
         docRef.getDocument { (document, error) in
          if let document = document, document.exists {
@@ -65,6 +65,11 @@ class LostViewController: UIViewController {
        
         
     }
+    @IBAction func didTapID(_ sender: Any) {
+        
+    }
+    
+    
     
     @IBAction func didTapSignOut(_ sender: Any) {
         try! Auth.auth().signOut()
@@ -76,6 +81,7 @@ class LostViewController: UIViewController {
         
         
     }
+    
     
     
     @IBAction func didTapGoHome(_ sender: Any) {
@@ -96,17 +102,8 @@ class LostViewController: UIViewController {
     }
     
     
-    func startWaitingIndicator(){
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-    func stopWaitingIndicator(){
-        activityIndicator.stopAnimating()
-        UIApplication.shared.endIgnoringInteractionEvents()
-    }
+    
+    
     /*
     // MARK: - Navigation
 

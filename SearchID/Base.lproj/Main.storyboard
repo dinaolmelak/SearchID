@@ -115,6 +115,7 @@
                                     <color key="titleColor" red="0.014944260940000001" green="0.45208162070000002" blue="0.9383379221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="dddd:" destination="QLR-1N-bSM" eventType="touchUpInside" id="0U6-4j-24S"/>
                                     <action selector="didTapSignIn:" destination="7nz-zH-IOu" eventType="touchUpInside" id="hK9-cI-w4r"/>
                                 </connections>
                             </button>
@@ -151,6 +152,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22h-j6-vDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="QLR-1N-bSM" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="Tx0-EP-Vms">
                     <connections>
                         <action selector="didTapGesture:" destination="7nz-zH-IOu" id="ujm-xc-dOX"/>
@@ -292,8 +294,19 @@
                                     <action selector="didTapSignOut:" destination="OBH-EB-MpV" eventType="touchUpInside" id="G6c-6D-QZt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLR-Ui-LNh">
+                                <rect key="frame" x="20" y="32" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Out" image="SearchID2-1">
+                                    <color key="titleColor" red="0.014944260940000001" green="0.45208162070000002" blue="0.9383379221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapID:" destination="OBH-EB-MpV" eventType="touchUpInside" id="Z7Z-mZ-3So"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="bGn-uy-KZ3"/>
                     </view>
                     <connections>
@@ -303,7 +316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RyM-IO-Mgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="513" y="-461"/>
+            <point key="canvasLocation" x="704" y="-870"/>
         </scene>
     </scenes>
     <resources>

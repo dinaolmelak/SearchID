@@ -87,7 +87,7 @@ class SignUpViewController: UIViewController {
                 "userUID": userUID,
                 "JSU_ID": jsuIDNum,
                 "Email": email,
-                "isIDLost": false,
+                "isLost": false
                 ])
         }//switch closes here
         
@@ -129,8 +129,6 @@ class SignUpViewController: UIViewController {
         self.present(alert,animated: true)
         
     }
-    
-    
     
     
     /*
