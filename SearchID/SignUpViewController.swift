@@ -75,20 +75,23 @@ class SignUpViewController: UIViewController {
             Auth.auth().createUser(withEmail: email, password: password) { (dataResult, error) in
                 if error == nil && dataResult != nil {
                     print("sign up success")
+                    let userUID = Auth.auth().currentUser!.uid
+                    
+                    self.db.collection("users").document(jsuIDNum).setData([
+                        "fullName": fullName,
+                        "userUID": userUID,
+                        "JSU_ID": jsuIDNum,
+                        "Email": email,
+                        "isLost": false
+                        ])
+                    
+                    print("uploaded Data!!!")
                     self.goToLostIDVC()
                 } else {
                     print("sign up failed \(error!.localizedDescription)")
                 }
             }
-            let userUID = Auth.auth().currentUser!.uid
             
-            db.collection("users").document(jsuIDNum).setData([
-                "fullName": fullName,
-                "userUID": userUID,
-                "JSU_ID": jsuIDNum,
-                "Email": email,
-                "isLost": false
-                ])
         }//switch closes here
         
         
@@ -129,6 +132,9 @@ class SignUpViewController: UIViewController {
         self.present(alert,animated: true)
         
     }
+    
+    
+    
     
     
     /*

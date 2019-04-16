@@ -44,10 +44,13 @@ class LostViewController: UIViewController {
         docRef.getDocument { (documentSnapshot, Error) in
             if let document = documentSnapshot, document.exists{
                 let data = document.data()
-                let emailFromDB = data!["Email"]!
-                self.lostIDLabel.text = (emailFromDB as! String)
+                //let emailFromDB = data!["Email"]!//This is the email of the person who lost their ID
+                let lostIDName = data!["fullName"]!
+                self.lostIDLabel.text = "Please take \(lostIDName)'s ID to the JSU Library"
             }
         }
+        docRef.updateData(["isLost":true])
+        //docRef.setValue(true, forKey: "isLost")//How I tried to edit file on database
         /*
         docRef.getDocument { (document, error) in
          if let document = document, document.exists {
