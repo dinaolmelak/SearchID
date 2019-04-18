@@ -10,6 +10,7 @@
 		776EB139DC042D9C220C743B /* Pods_SearchID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F436788775D04BD6687E1A64 /* Pods_SearchID.framework */; };
 		C035C97F22567EE90072A6F5 /* LostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C035C97E22567EE90072A6F5 /* LostViewController.swift */; };
 		C06085D42254831B00D7C6EA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06085D32254831B00D7C6EA /* SignInViewController.swift */; };
+		C098D4F3226822B200B6FE79 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C098D4F2226822B200B6FE79 /* MainTabController.swift */; };
 		C0B07EF02247140500D1BBE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07EEF2247140500D1BBE1 /* AppDelegate.swift */; };
 		C0B07EF22247140500D1BBE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07EF12247140500D1BBE1 /* ViewController.swift */; };
 		C0B07EF52247140500D1BBE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0B07EF32247140500D1BBE1 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 		C0B07EFA2247140800D1BBE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0B07EF82247140800D1BBE1 /* LaunchScreen.storyboard */; };
 		C0B07F022247466600D1BBE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0B07F012247466600D1BBE1 /* GoogleService-Info.plist */; };
 		C0B07F042247660F00D1BBE1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F032247660F00D1BBE1 /* SignUpViewController.swift */; };
+		C0D5D701226657ED0037E370 /* myIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D5D700226657ED0037E370 /* myIDViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		A8F5BB412CEDEB17492CB1D8 /* Pods-SearchID.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchID.debug.xcconfig"; path = "Target Support Files/Pods-SearchID/Pods-SearchID.debug.xcconfig"; sourceTree = "<group>"; };
 		C035C97E22567EE90072A6F5 /* LostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostViewController.swift; sourceTree = "<group>"; };
 		C06085D32254831B00D7C6EA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		C098D4F2226822B200B6FE79 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		C0B07EEC2247140500D1BBE1 /* SearchID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B07EEF2247140500D1BBE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0B07EF12247140500D1BBE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +36,7 @@
 		C0B07EFB2247140800D1BBE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0B07F012247466600D1BBE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0B07F032247660F00D1BBE1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C0D5D700226657ED0037E370 /* myIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myIDViewController.swift; sourceTree = "<group>"; };
 		F436788775D04BD6687E1A64 /* Pods_SearchID.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchID.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,9 +83,11 @@
 			children = (
 				C0B07EEF2247140500D1BBE1 /* AppDelegate.swift */,
 				C0B07EF12247140500D1BBE1 /* ViewController.swift */,
+				C098D4F2226822B200B6FE79 /* MainTabController.swift */,
 				C0B07F032247660F00D1BBE1 /* SignUpViewController.swift */,
 				C06085D32254831B00D7C6EA /* SignInViewController.swift */,
 				C035C97E22567EE90072A6F5 /* LostViewController.swift */,
+				C0D5D700226657ED0037E370 /* myIDViewController.swift */,
 				C0B07EF32247140500D1BBE1 /* Main.storyboard */,
 				C0B07EF62247140800D1BBE1 /* Assets.xcassets */,
 				C0B07EF82247140800D1BBE1 /* LaunchScreen.storyboard */,
@@ -290,6 +296,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C06085D42254831B00D7C6EA /* SignInViewController.swift in Sources */,
+				C0D5D701226657ED0037E370 /* myIDViewController.swift in Sources */,
+				C098D4F3226822B200B6FE79 /* MainTabController.swift in Sources */,
 				C0B07F042247660F00D1BBE1 /* SignUpViewController.swift in Sources */,
 				C035C97F22567EE90072A6F5 /* LostViewController.swift in Sources */,
 				C0B07EF22247140500D1BBE1 /* ViewController.swift in Sources */,

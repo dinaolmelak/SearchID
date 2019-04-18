@@ -25,11 +25,12 @@ class SignInViewController: UIViewController {
         db = Firestore.firestore()
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
-    
+ 
     
     
     @IBAction func didTapOnBack(_ sender: Any) {
@@ -44,7 +45,7 @@ class SignInViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (dataResult, error) in
             if dataResult != nil && error == nil{
                 print("Signed IN!!!!")
-                self.goToLostIDVC()
+                self.goToTabController()
             }else{
                 print("ERROR\(error!.localizedDescription)")
             }
@@ -83,13 +84,17 @@ class SignInViewController: UIViewController {
     
     
     
-    func goToLostIDVC(){
+    func goToTabController(){
+        let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        mainTabController.selectedViewController = mainTabController.viewControllers?[2]
+        present(mainTabController, animated: true, completion: nil)
         
+        /*
         let myLostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "lostVCID") as! LostViewController
         self.addChild(myLostVC)
         self.view.addSubview(myLostVC.view)
         myLostVC.didMove(toParent: self)
-        
+        */
         
     }
     

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser != nil{
-            goToLostIDVC()
+            goToTabController()
         }
         
     }
@@ -45,6 +45,15 @@ class ViewController: UIViewController {
         
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func createAlert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
@@ -54,12 +63,17 @@ class ViewController: UIViewController {
         
     }
     
-    func goToLostIDVC(){
+    func goToTabController(){
+        let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        mainTabController.selectedViewController = mainTabController.viewControllers?[2]
+        present(mainTabController, animated: true, completion: nil)
         
+        /*
         let myLostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "lostVCID") as! LostViewController
         self.addChild(myLostVC)
         self.view.addSubview(myLostVC.view)
         myLostVC.didMove(toParent: self)
+        */
         
     }
     

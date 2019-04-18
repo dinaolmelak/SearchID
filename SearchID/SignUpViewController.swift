@@ -86,7 +86,7 @@ class SignUpViewController: UIViewController {
                         ])
                     
                     print("uploaded Data!!!")
-                    self.goToLostIDVC()
+                    self.goToMainTabController()
                 } else {
                     print("sign up failed \(error!.localizedDescription)")
                 }
@@ -108,12 +108,21 @@ class SignUpViewController: UIViewController {
     
     
     
-    func goToLostIDVC(){
+    func goToMainTabController(){
+        
+        let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+        mainTabController.selectedViewController = mainTabController.viewControllers?[2]
+        present(mainTabController, animated: true, completion: nil)
+        
+        
+        /*
+        
         
         let myLostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "lostVCID") as! LostViewController
         self.addChild(myLostVC)
         self.view.addSubview(myLostVC.view)
         myLostVC.didMove(toParent: self)
+        */
         
     }
     func goBack(){

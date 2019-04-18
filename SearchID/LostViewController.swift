@@ -17,6 +17,7 @@ class LostViewController: UIViewController {
     @IBOutlet weak var lostIDLabel: UILabel!
     @IBOutlet weak var numberIDTextField: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let settings = FirestoreSettings()
@@ -24,7 +25,6 @@ class LostViewController: UIViewController {
         Firestore.firestore().settings = settings
         // [END setup]
         db = Firestore.firestore()
-        self.view.endEditing(true)
         
     }
     @IBAction func didTapSearch(_ sender: Any) {
@@ -68,9 +68,16 @@ class LostViewController: UIViewController {
        
         
     }
-    @IBAction func didTapID(_ sender: Any) {
+    @IBAction func didTapMyID(_ sender: Any) {
+        self.view.endEditing(true)
+        let goMyIDVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myIDVC") as! myIDViewController
+        
+        self.addChild(goMyIDVC)
+        self.view.addSubview(goMyIDVC.view)
+        goMyIDVC.didMove(toParent: self)
         
     }
+    
     
     
     
