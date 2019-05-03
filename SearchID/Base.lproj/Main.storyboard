@@ -362,7 +362,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="idJ-a1-3K1"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="LKb-rg-OTh"/>
+                    <tabBarItem key="tabBarItem" title="Profile" selectedImage="search" id="LKb-rg-OTh"/>
                     <connections>
                         <outlet property="displayName" destination="WFG-yT-sbV" id="Omz-M0-kBH"/>
                         <outlet property="emailPreviewLabel" destination="at4-Ft-Cjm" id="sSG-9E-1Aa"/>
@@ -549,6 +549,7 @@
     </scenes>
     <resources>
         <image name="SearchID2-1" width="609" height="609"/>
+        <image name="search" width="10.666666984558105" height="10.666666984558105"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4Xw-sK-kb6"/>

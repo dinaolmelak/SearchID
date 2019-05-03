@@ -67,9 +67,9 @@ class UnidentifiedUserViewController: UIViewController {
     
     
     func storeEmail(){
-        let fname = firstNameInput.text!.lowercased()
-        let mname = middleInitialInput.text!.lowercased()
-        let lname = lastNameInput.text!.lowercased()
+        let fname = firstNameInput.text!.lowercased().trimmingCharacters(in: .whitespaces)
+        let mname = middleInitialInput.text!.lowercased().trimmingCharacters(in: .whitespaces)
+        let lname = lastNameInput.text!.lowercased().trimmingCharacters(in: .whitespaces)
         let email = "\(fname).\(mname).\(lname)@students.jsums.edu"
         let fullName = "\(String(describing: firstNameInput.text!)) \(String(describing: lastNameInput.text!))"
         
