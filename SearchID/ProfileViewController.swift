@@ -16,9 +16,9 @@ class ProfileViewController: UIViewController {
     let user = Auth.auth().currentUser
     @IBOutlet weak var myIDLost: UISwitch!
 
-
-    @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var displayName: UILabel!
+    @IBOutlet weak var emailPreviewLabel: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,8 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.displayName != nil{
             displayName.text = Auth.auth().currentUser?.displayName
+            emailPreviewLabel.text = Auth.auth().currentUser?.email
+
         }else{
             displayName.text = "Name"
             
@@ -183,7 +185,6 @@ class ProfileViewController: UIViewController {
             changeRequest?.displayName = alert.textFields![0].text
             changeRequest?.commitChanges{ (error) in
                 print("success commiting")
-                let userInfo = Auth.auth().currentUser?.providerData
                 
             }
             
