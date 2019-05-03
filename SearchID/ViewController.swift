@@ -21,32 +21,42 @@ class ViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.view.endEditing(true)
         if Auth.auth().currentUser != nil{
-            goToTabController()
+            let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
+            mainTabController.selectedViewController = mainTabController.viewControllers?[0]
+            present(mainTabController, animated: false, completion: nil)
         }
         
     }
     
     
     @IBAction func didTapCreateAccount(_ sender: Any) {
+        performSegue(withIdentifier: "tapCreateToSignUp", sender: self)
+        /*
         let signUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpVCID") as! SignUpViewController
         self.addChild(signUpVC)
         self.view.addSubview(signUpVC.view)
         signUpVC.didMove(toParent: self)
-        
+        */
         
         
     }
     @IBAction func didTapSignIn(_ sender: Any) {
+        performSegue(withIdentifier: "tapSignInToSignIn", sender: self)
+        /*
         let signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signInVCID") as! SignInViewController
         self.addChild(signInVC)
         self.view.addSubview(signInVC.view)
         signInVC.didMove(toParent: self)
-        
+        */
     }
     
     
     
+    @IBAction func didTapGesture(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     
     
     
@@ -65,7 +75,7 @@ class ViewController: UIViewController {
     
     func goToTabController(){
         let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
-        mainTabController.selectedViewController = mainTabController.viewControllers?[2]
+        mainTabController.selectedViewController = mainTabController.viewControllers?[0]
         present(mainTabController, animated: true, completion: nil)
         
         /*

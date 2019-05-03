@@ -17,6 +17,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var jsuIDNumberIn: UITextField!
     @IBOutlet weak var emailTextIn: UITextField!
     @IBOutlet weak var passwordIn: UITextField!
+    @IBOutlet weak var phoneNumberIn: UITextField!
+    
     
     var db: Firestore!
     override func viewDidLoad() {
@@ -27,11 +29,13 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
         db = Firestore.firestore()
     }
-    
+    /*
     @IBAction func didTapBack(_ sender: Any) {
+        
         goBack()
         
     }
+ */
     @IBAction func didTapSignUp(_ sender: Any) {
         let switchCar: Character
         
@@ -43,8 +47,11 @@ class SignUpViewController: UIViewController {
             switchCar = "c"
         }else if(fullNameTextIn.text == ""){
             switchCar = "d"
-        }else if(fullNameTextIn.text == "" && passwordIn.text == "" && (emailTextIn.text == "" || !((emailTextIn.text?.contains("@"))!)) && (jsuIDNumberIn.text?.count != 6 || jsuIDNumberIn.text == "")){
+        }else if(phoneNumberIn.text == ""){
             switchCar = "e"
+        }
+        else if(fullNameTextIn.text == "" && passwordIn.text == "" && (emailTextIn.text == "" || !((emailTextIn.text?.contains("@"))!)) && (jsuIDNumberIn.text?.count != 6 || jsuIDNumberIn.text == "")){
+            switchCar = "f"
         }else {
             switchCar = "z"
         }
@@ -59,13 +66,17 @@ class SignUpViewController: UIViewController {
         case "d":
             createAlert(title: "Full Name Needed", message: "Please enter your first and last name")
         case "e":
+            createAlert(title: "Info Needed", message: "Please input your number so that you get instant Alert")
+        case "f":
             createAlert(title: "Info Needed", message: "Please fill out the needed information")
+            
         default:
             
             let email = emailTextIn.text!
             let password = passwordIn.text!
             let jsuIDNum = jsuIDNumberIn.text!
             let fullName = fullNameTextIn.text!
+            let phoneNumber = phoneNumberIn.text!
             
             //myDoc.collection("Users").addDocument(data: ["JSU_ID":jsuIDNumberIn.text!])
             //myDoc.setData(["JSU_ID":jsuIDNumberIn.text!])
@@ -82,11 +93,20 @@ class SignUpViewController: UIViewController {
                         "userUID": userUID,
                         "JSU_ID": jsuIDNum,
                         "Email": email,
-                        "isLost": false
+                        "isLost": false,
+                        "phoneNumber": phoneNumber
                         ])
                     
-                    print("uploaded Data!!!")
-                    self.goToMainTabController()
+                    print("uploaded Data for info")
+                    
+                    self.db.collection("usersID").document(userUID).setData([
+                        "lastSix": jsuIDNum
+                        ])
+                    print("uploaded usersID")
+                    
+                    
+                    self.performSegue(withIdentifier: "signUpToMainTab", sender: self)
+                    //self.goToMainTabController()
                 } else {
                     print("sign up failed \(error!.localizedDescription)")
                 }
@@ -103,6 +123,14 @@ class SignUpViewController: UIViewController {
         
     }
     
+    @IBAction func didTapOnYesAccount(_ sender: Any) {
+        let signInViewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signInVCID") as! SignInViewController
+        self.addChild(signInViewVC)
+        self.view.addSubview(signInViewVC.view)
+        signInViewVC.didMove(toParent: self)
+        
+        
+    }
     
     
     
@@ -111,7 +139,7 @@ class SignUpViewController: UIViewController {
     func goToMainTabController(){
         
         let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
-        mainTabController.selectedViewController = mainTabController.viewControllers?[2]
+        mainTabController.selectedViewController = mainTabController.viewControllers?[0]
         present(mainTabController, animated: true, completion: nil)
         
         
@@ -125,6 +153,7 @@ class SignUpViewController: UIViewController {
         */
         
     }
+    /*
     func goBack(){
         self.view.endEditing(true)
         let myhomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
@@ -132,7 +161,7 @@ class SignUpViewController: UIViewController {
         self.view.addSubview(myhomeVC.view)
         myhomeVC.didMove(toParent: self)
     }
-    
+    */
     func createAlert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in

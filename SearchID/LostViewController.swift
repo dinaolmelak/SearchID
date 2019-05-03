@@ -27,6 +27,10 @@ class LostViewController: UIViewController {
         db = Firestore.firestore()
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let unidentifiedVC = segue.destination as! UnidentifiedUserViewController
+        unidentifiedVC.lostIDLastSix = numberIDTextField.text
+    }
     @IBAction func didTapSearch(_ sender: Any) {
         self.view.endEditing(true)
         
@@ -47,9 +51,14 @@ class LostViewController: UIViewController {
                 //let emailFromDB = data!["Email"]!//This is the email of the person who lost their ID
                 let lostIDName = data!["fullName"]!
                 self.lostIDLabel.text = "Please take \(lostIDName)'s ID to the JSU Library"
+                docRef.updateData(["isLost":true])
+
+            }else {
+                print ("doesn't exist")
+                self.performSegue(withIdentifier: "unidentifiedUserSegue", sender: self)
             }
+ 
         }
-        docRef.updateData(["isLost":true])
         //docRef.setValue(true, forKey: "isLost")//How I tried to edit file on database
         /*
         docRef.getDocument { (document, error) in
@@ -68,32 +77,18 @@ class LostViewController: UIViewController {
        
         
     }
-    @IBAction func didTapMyID(_ sender: Any) {
+    
+    
+    @IBAction func didTapGesture(_ sender: Any) {
         self.view.endEditing(true)
-        let goMyIDVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myIDVC") as! myIDViewController
-        
-        self.addChild(goMyIDVC)
-        self.view.addSubview(goMyIDVC.view)
-        goMyIDVC.didMove(toParent: self)
-        
     }
     
     
     
     
-    @IBAction func didTapSignOut(_ sender: Any) {
-        try! Auth.auth().signOut()
-        let goHomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
-        
-        self.addChild(goHomeVC)
-        self.view.addSubview(goHomeVC.view)
-        goHomeVC.didMove(toParent: self)
-        
-        
-    }
     
     
-    
+    /*
     @IBAction func didTapGoHome(_ sender: Any) {
         self.view.endEditing(true)
         let goHomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as! ViewController
@@ -102,6 +97,7 @@ class LostViewController: UIViewController {
         self.view.addSubview(goHomeVC.view)
         goHomeVC.didMove(toParent: self)
     }
+ */
     func createAlert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in

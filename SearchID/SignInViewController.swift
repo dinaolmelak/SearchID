@@ -45,7 +45,8 @@ class SignInViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (dataResult, error) in
             if dataResult != nil && error == nil{
                 print("Signed IN!!!!")
-                self.goToTabController()
+                self.performSegue(withIdentifier: "signInToTab", sender: self)
+                //self.goToTabController()
             }else{
                 print("ERROR\(error!.localizedDescription)")
             }
@@ -82,11 +83,20 @@ class SignInViewController: UIViewController {
     }
     
     
+    @IBAction func didTapOnNoAccount(_ sender: Any) {
+        let signUpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signUpVCID") as! SignUpViewController
+        self.addChild(signUpController)
+        self.view.addSubview(signUpController.view)
+        signUpController.didMove(toParent: self)
+        
+    }
+    
+    
     
     
     func goToTabController(){
         let mainTabController = storyboard?.instantiateViewController(withIdentifier: "MainTabController") as! MainTabController
-        mainTabController.selectedViewController = mainTabController.viewControllers?[2]
+        mainTabController.selectedViewController = mainTabController.viewControllers?[0]
         present(mainTabController, animated: true, completion: nil)
         
         /*
