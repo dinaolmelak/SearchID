@@ -182,7 +182,8 @@ class ProfileViewController: UIViewController {
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
             changeRequest?.displayName = alert.textFields![0].text
             changeRequest?.commitChanges{ (error) in
-                print("Unable to commit Changes")
+                print("success commiting")
+                let userInfo = Auth.auth().currentUser?.providerData
                 
             }
             
