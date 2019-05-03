@@ -15,8 +15,10 @@ class ProfileViewController: UIViewController {
     var db: Firestore!
     let user = Auth.auth().currentUser
     @IBOutlet weak var myIDLost: UISwitch!
+
     @IBOutlet weak var displayName: UILabel!
     @IBOutlet weak var emailPreviewLabel: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,7 @@ class ProfileViewController: UIViewController {
         if Auth.auth().currentUser?.displayName != nil{
             displayName.text = Auth.auth().currentUser?.displayName
             emailPreviewLabel.text = Auth.auth().currentUser?.email
+
         }else{
             displayName.text = "Name"
             
