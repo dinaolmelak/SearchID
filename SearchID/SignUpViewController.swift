@@ -132,6 +132,15 @@ class SignUpViewController: UIViewController {
         
     }
     
+    @IBAction func didTapOnShow(_ sender: Any) {
+        self.view.endEditing(true)
+        if passwordIn.isSecureTextEntry == true{
+            passwordIn.isSecureTextEntry = false
+        }else{
+            passwordIn.isSecureTextEntry = true
+        }
+        
+    }
     
     
     

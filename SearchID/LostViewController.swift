@@ -55,7 +55,20 @@ class LostViewController: UIViewController {
 
             }else {
                 print ("doesn't exist")
-                self.performSegue(withIdentifier: "unidentifiedUserSegue", sender: self)
+                let alert = UIAlertController(title: "ID Info", message: "Does the ID have first name, middle name/(M.I), and last Name", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { (action) in
+                    alert.dismiss(animated: true)
+                    self.createAlert(title: "Sorry!", message: "SearchID was unable to contact the person")
+                }))
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (actionWhenYes) in
+                    self.performSegue(withIdentifier: "unidentifiedUserSegue", sender: self)
+                }))
+                self.present(alert,animated: true)
+                
+                
+                
+                
+                
             }
  
         }
@@ -82,9 +95,6 @@ class LostViewController: UIViewController {
     @IBAction func didTapGesture(_ sender: Any) {
         self.view.endEditing(true)
     }
-    
-    
-    
     
     
     

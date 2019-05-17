@@ -27,17 +27,6 @@ class ProfileViewController: UIViewController {
         
         db = Firestore.firestore()
         // Do any additional setup after loading the view.
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        if Auth.auth().currentUser?.displayName != nil{
-            displayName.text = Auth.auth().currentUser?.displayName
-            emailPreviewLabel.text = Auth.auth().currentUser?.email
-
-        }else{
-            displayName.text = "Name"
-            
-        }
-        
         if let user = user{
             let currentUserUID:String
             currentUserUID = user.uid
@@ -64,9 +53,11 @@ class ProfileViewController: UIViewController {
                             
                             if isLostIDValue == true{
                                 self.myIDLost.isOn = true
+                                print("set true")
                             }
-                            else{
+                            else if isLostIDValue == false{
                                 self.myIDLost.isOn = false
+                                print("set false")
                             }
                             //myIDLost = isLostIDValue
                         }
@@ -78,6 +69,17 @@ class ProfileViewController: UIViewController {
                 }
             }
             print(currentUserUID)
+        }
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if Auth.auth().currentUser?.displayName != nil{
+            displayName.text = Auth.auth().currentUser?.displayName
+            emailPreviewLabel.text = Auth.auth().currentUser?.email
+
+        }else{
+            displayName.text = "Name"
+            
         }
     }
     
@@ -96,7 +98,7 @@ class ProfileViewController: UIViewController {
         
         if myIDLost.isOn == true{
             if let user = user{
-                let currentUserUID:String
+                let currentUserUID: String
                 currentUserUID = user.uid
                 print("this is userUID \(currentUserUID)")
                 
@@ -123,12 +125,11 @@ class ProfileViewController: UIViewController {
                          }
                          }
                          */
-                        docRef2.updateData(["isLost" : false])
-                        
+                        docRef2.updateData(["isLost" : true])
                         
                     }
                 }
-                print(currentUserUID)
+                print("switched to false")
             }
         } else{
             if let user = user{
@@ -159,12 +160,11 @@ class ProfileViewController: UIViewController {
                          }
                          }
                          */
-                        docRef2.updateData(["isLost" : true])
-                        
+                        docRef2.updateData(["isLost" : false])
                         
                     }
                 }
-                print(currentUserUID)
+                print("Switched to true")
             }
         }
         
@@ -216,6 +216,8 @@ class ProfileViewController: UIViewController {
         self.present(alert,animated: true)
         
     }
+    
+    
     /*
     // MARK: - Navigation
 

@@ -31,6 +31,15 @@ class SignInViewController: UIViewController {
         
     }
  
+    @IBAction func didTapShow(_ sender: Any) {
+        self.view.endEditing(true)
+        if passwordTextIn.isSecureTextEntry == true {
+            passwordTextIn.isSecureTextEntry = false
+        } else{
+            passwordTextIn.isSecureTextEntry = true
+        }
+        
+    }
     
     
     @IBAction func didTapOnBack(_ sender: Any) {
